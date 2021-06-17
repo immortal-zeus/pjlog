@@ -44,41 +44,41 @@ class log():
 
     def __add__(self, other):
         if self.Base == other.Base:
-            return pylog(self.Argument * other.Argument, self.Base)
+            return log(self.Argument * other.Argument, self.Base)
         else:
             print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
             temp_base = int(input())
             sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) + (math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
-            return pylog(math.pow(temp_base,sum_temp_base) , temp_base)
+            return log(math.pow(temp_base,sum_temp_base) , temp_base)
 
     def __sub__(self, other):
         if self.Base == other.Base :
-            return pylog(self.Argument / other.Argument, self.Base)
+            return log(self.Argument / other.Argument, self.Base)
         else:
             print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
             temp_base = int(input())
             sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) - (math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
-            return pylog(math.pow(temp_base, sum_temp_base), temp_base)
+            return log(math.pow(temp_base, sum_temp_base), temp_base)
 
     def __mul__(self, other):
         if self.Base == other.Base:
             temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
-            return pylog(math.pow(self.Base, temp_mul_val), self.Base)
+            return log(math.pow(self.Base, temp_mul_val), self.Base)
         else:
             print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
             temp_base = int(input())
             temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
-            return pylog(math.pow(temp_base, temp_mul_val) , temp_base)
+            return log(math.pow(temp_base, temp_mul_val) , temp_base)
 
     def __truediv__(self, other):
         if self.Base == other.Base:
             temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
-            return pylog(math.pow(self.Base, temp_mul_val), self.Base)
+            return log(math.pow(self.Base, temp_mul_val), self.Base)
         else:
             print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
             temp_base = int(input())
             temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
-            return pylog(math.pow(temp_base, temp_mul_val) , temp_base)
+            return log(math.pow(temp_base, temp_mul_val) , temp_base)
 
     def __floordiv__(self, other):
         raise TypeError("Sorry, No Floor Division Allowed.")
@@ -108,18 +108,18 @@ class log():
         '''
         Function to multiple a number(Int/Float) with Logarithm.
         :param value: Argument of the Logarithm
-        :return: pylog object
+        :return: log object
         '''
-        return pylog(math.pow(self.Argument, value), self.Base)
+        return log(math.pow(self.Argument, value), self.Base)
 
     def Lbase_change(self,base):
         '''
         Function to Change the base of Logarithm.
         :param base: Base of the Logarithm
-        :return: pylog object
+        :return: log object
         '''
         base_change = math.log(self.Argument, base) / math.log(self.Base, base)
-        return pylog(math.pow(base, base_change), base)
+        return log(math.pow(base, base_change), base)
 
     def Lget_value(self):
         '''
