@@ -19,14 +19,14 @@ class log():
                     raise Exception("LogBase has to be Greater than one.")
 
                 if value <=0:
-                    raise ValueError("Outside Log domain")
+                    raise ValueError("Outside Log domain.")
 
                 self.Argument = value
                 self.Base = base
                 self.__find_char_man__(self.Argument, self.Base)
 
             else:
-                raise TypeError("Base has to be a Number. ")
+                raise TypeError("Base has to be a Number.")
 
     def __find_char_man__(self, value , base):
         '''
@@ -106,7 +106,7 @@ class log():
         return f"Argument : {self.Argument}" +"\n"+ f"Base : {self.Base}"+"\n"+ f"Characteristic : {self.Characteristic}" +"\n"+ f"Mantissa : {self.Mantissa}"
 
     def __repr__(self):
-        return f"Lof({self.Argument} , {self.Base})"
+        return f"Log({self.Argument} , {self.Base})"
 
     def __lt__(self, other):
         return (self.Characteristic + self.Mantissa) < (other.Characteristic + other.Mantissa)
