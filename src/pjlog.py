@@ -1,4 +1,5 @@
 import math
+
 class log():
     ''' A simple Class of Logarithm with helpful functions. Base 10 is default.  '''
     Base = 0
