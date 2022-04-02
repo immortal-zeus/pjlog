@@ -11,7 +11,7 @@ class log():
         if base == 'e' or base == 'E':
             self.Argument = value
             self.Base = 2.718
-            self.__find_char_man__(self.Argument, self.Base)
+            self.__find_char_man(self.Argument, self.Base)
 
         else:
             if type(base)== int or type(base)==float:
@@ -24,12 +24,12 @@ class log():
 
                 self.Argument = value
                 self.Base = base
-                self.__find_char_man__(self.Argument, self.Base)
+                self.__find_char_man(self.Argument, self.Base)
 
             else:
                 raise TypeError("Base has to be a Number.")
 
-    def __find_char_man__(self, value , base):
+    def __find_char_man(self, value , base):
         '''
         Function to Calculate Characteristic and Mantissa of Logarithm.
         :param value: Arugument of Logarithm
