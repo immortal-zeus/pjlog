@@ -1,16 +1,17 @@
 import math
 class log():
-    ''' A simple Class of Logarithm with helpful functions. Base 10 is default.  '''
+    ''' A simple Class of Logarithm with helpful functions. Base 10 is default.'''
     Base = 0
     Argument = 0
     Characteristic = 0
     Mantissa = 0
 
     def __init__(self,value , base = 10 ):
+        self.__defaultbase = 10
         if base == 'e' or base == 'E':
             self.Argument = value
             self.Base = 2.718
-            self.__find_char_man__(self.Argument, self.Base)
+            self.__find_char_man(self.Argument, self.Base)
 
         else:
             if type(base)== int or type(base)==float:
@@ -19,16 +20,16 @@ class log():
                     raise Exception("LogBase has to be Greater than one.")
 
                 if value <=0:
-                    raise ValueError("Outside Log domain")
+                    raise ValueError("Outside Log domain.")
 
                 self.Argument = value
                 self.Base = base
-                self.__find_char_man__(self.Argument, self.Base)
+                self.__find_char_man(self.Argument, self.Base)
 
             else:
-                raise TypeError("Base has to be a Number. ")
+                raise TypeError("Base has to be a Number.")
 
-    def __find_char_man__(self, value , base):
+    def __find_char_man(self, value , base):
         '''
         Function to Calculate Characteristic and Mantissa of Logarithm.
         :param value: Arugument of Logarithm
@@ -43,62 +44,98 @@ class log():
             self.Mantissa , self.Characteristic = math.modf(temp_log)
 
     def __add__(self, other):
+        if type(other) != log :
+            raise TypeError(f"Addition with {type(other)}.")
         if self.Base == other.Base:
             return log(self.Argument * other.Argument, self.Base)
         else:
-            print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
-            temp_base = float(input())
+            temp_base = self.__defaultbase
             sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) + (math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
             return log(math.pow(temp_base,sum_temp_base) , temp_base)
 
     def __sub__(self, other):
+        if type(other) != log :
+            raise TypeError(f"Subtraction with {type(other)}.")
         if self.Base == other.Base :
             return log(self.Argument / other.Argument, self.Base)
         else:
-            print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
-            temp_base = float(input())
+            temp_base = self.__defaultbase
             sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) - (math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
             return log(math.pow(temp_base, sum_temp_base), temp_base)
 
     def __mul__(self, other):
+        if type(other) != log :
+            raise TypeError(f"Multiplication with {type(other)}.")
         if self.Base == other.Base:
             temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
             return log(math.pow(self.Base, temp_mul_val), self.Base)
         else:
-            print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
-            temp_base = float(input())
+            temp_base = self.__defaultbase
             temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
             return log(math.pow(temp_base, temp_mul_val) , temp_base)
 
     def __truediv__(self, other):
+        if type(other) != log :
+            raise TypeError(f"Division with {type(other)}.")
         if self.Base == other.Base:
             temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
             return log(math.pow(self.Base, temp_mul_val), self.Base)
         else:
-            print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
-            temp_base = float(input())
+            temp_base = self.__defaultbase
             temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
             return log(math.pow(temp_base, temp_mul_val) , temp_base)
 
     def __radd__(self, other):
-        raise Exception("Will implemented in future versions.")
+        if type(other) != log :
+            raise TypeError(f"Addition with {type(other)}.")
+        if self.Base == other.Base:
+            return log(self.Argument * other.Argument, self.Base)
+        else:
+            temp_base = self.__defaultbase
+            sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) + (math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
+            return log(math.pow(temp_base,sum_temp_base) , temp_base)
 
     def __rsub__(self, other):
-        raise Exception("Will implemented in future versions.")
+        if type(other) != log:
+            raise TypeError(f"Subtraction with {type(other)}.")
+        if self.Base == other.Base:
+            return log(self.Argument / other.Argument, self.Base)
+        else:
+            temp_base = self.__defaultbase
+            sum_temp_base = (math.log(self.Argument, temp_base) / math.log(self.Base, temp_base)) - (
+                        math.log(other.Argument, temp_base) / math.log(other.Base, temp_base))
+            return log(math.pow(temp_base, sum_temp_base), temp_base)
 
     def __rmul__(self, other):
-        raise Exception("Will implemented in future versions.")
+        if type(other) != log:
+            raise TypeError(f"Multiplication with {type(other)}.")
+        if self.Base == other.Base:
+            temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
+            return log(math.pow(self.Base, temp_mul_val), self.Base)
+        else:
+            temp_base = self.__defaultbase
+            temp_mul_val = (self.Characteristic + self.Mantissa) * (other.Characteristic + other.Mantissa)
+            return log(math.pow(temp_base, temp_mul_val), temp_base)
 
     def __rtruediv__(self, other):
-        raise Exception("Will implemented in future versins.")
+        if type(other) != log:
+            raise TypeError(f"Division with {type(other)}.")
+        if self.Base == other.Base:
+            temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
+            return log(math.pow(self.Base, temp_mul_val), self.Base)
+        else:
+            temp_base = self.__defaultbase
+            temp_mul_val = (self.Characteristic + self.Mantissa) / (other.Characteristic + other.Mantissa)
+            return log(math.pow(temp_base, temp_mul_val), temp_base)
 
     def __floordiv__(self, other):
+        if type(other) != log:
+            raise TypeError(f"Floor Division with {type(other)}.")
         if self.Base == other.Base:
             temp_mul_val = (self.Characteristic) // (other.Characteristic)
             return log(math.pow(self.Base, temp_mul_val), self.Base)
         else:
-            print("Due to difference in log bases, Please enter in which Base the answer should be in : ")
-            temp_base = float(input())
+            temp_base = self.__defaultbase
             temp_mul_val = (self.Characteristic) // (other.Characteristic)
             return log(math.pow(temp_base, temp_mul_val), temp_base)
 
@@ -106,7 +143,7 @@ class log():
         return f"Argument : {self.Argument}" +"\n"+ f"Base : {self.Base}"+"\n"+ f"Characteristic : {self.Characteristic}" +"\n"+ f"Mantissa : {self.Mantissa}"
 
     def __repr__(self):
-        return f"Lof({self.Argument} , {self.Base})"
+        return f"Log({self.Argument} , {self.Base})"
 
     def __lt__(self, other):
         return (self.Characteristic + self.Mantissa) < (other.Characteristic + other.Mantissa)
