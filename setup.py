@@ -5,7 +5,7 @@ with open("README.md","r") as fh:
 
 setup(
     name = 'pjlog',
-    version = '0.1.0',
+    version = '0.1.9',
     description = 'Simple library for Logarithm with useful functions.',
     py_modules = ["pjlog"],
     package_dir = {'': 'src'},
